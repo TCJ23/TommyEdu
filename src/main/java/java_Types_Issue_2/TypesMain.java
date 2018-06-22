@@ -16,7 +16,7 @@ public class TypesMain {
     Integer integer = 100;
     float orbit = 1765.65f; //or F or nothing
     double inclination = 120.1762D; //or d or nothing
-    //not visible for main
+    //not visible for main unless static
 
 
     public static void main(String[] args) {
@@ -40,6 +40,21 @@ public class TypesMain {
     Float & Double -> DON'T cache objects
     CACHE ONLY FOR VALUES -127 to 128
     */
+
+        char c = 'a';
+        int kod = c;
+        System.out.println("Kod znaku" + c + " = " + kod);
+        kod = 77;
+        c = (char) kod;
+        System.out.println("Kod znaku" + c + " = " + kod);
+        // jawna konwersja roszerzająca
+        System.out.println("Kod znaku" + '*' + " = " + (int) '*');
+        // jawna zawężająca
+        System.out.println("Kod znaku" + (char) 66 + " = " + 66);
+        //char będzie liczony w decymalnym
+        char b = 'a' + 1;
+        System.out.println(b + " - " + (int) b);
+        System.out.println(++b + " - " + (int) b);
     }
 }
 
