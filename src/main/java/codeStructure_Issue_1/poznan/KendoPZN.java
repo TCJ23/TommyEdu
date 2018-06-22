@@ -1,10 +1,12 @@
-package lodz;
+package codeStructure_Issue_1.poznan;
 
+import codeStructure_Issue_1.lodz.KendoLDZ;
 /*
-no big comments please
+to show package import
  */
-public class KendoLDZ {
+public class KendoPZN {
 
+    private KendoLDZ kolega;
     private final String dojo ;
     private final int kyu;
     private static long miecz;
@@ -14,7 +16,7 @@ public class KendoLDZ {
     //constructors
     //    public KendoLDZ(String zawodnik) { } -> illegal because of final
 
-    public KendoLDZ(final String dojo, final int kyu, String name) {
+    public KendoPZN(final String dojo, final int kyu, String name) {
         this.dojo = dojo;
         this.kyu = kyu;
         this.name = name;

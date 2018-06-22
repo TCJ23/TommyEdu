@@ -1,9 +1,9 @@
-package lodz;
+package codeStructure_Issue_1.lodz;
 
 public class Main {
 
     public static void main(String[] kendos) {
-
+        System.out.println("Hi this is where we start");
     }
 
 //    public static void main(String kendos[]) -> acceptable {
