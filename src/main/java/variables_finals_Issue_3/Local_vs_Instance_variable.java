@@ -1,4 +1,4 @@
-package Variables_Finals_Issue_3;
+package variables_finals_Issue_3;
 
 public class Local_vs_Instance_variable {
     String phoneNumber = "123456789";
@@ -6,7 +6,7 @@ public class Local_vs_Instance_variable {
             String phoneNumber;
             phoneNumber = "987654321";
         }
-
+    // BAD PRACTICE
     public static void main(String[] args) {
         Local_vs_Instance_variable p1 = new Local_vs_Instance_variable();
         p1.setPhoneNumber();

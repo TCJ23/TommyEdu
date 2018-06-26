@@ -1,4 +1,4 @@
-package Variables_Finals_Issue_3;
+package variables_finals_Issue_3;
 
 public class Variables_Finals {
 
