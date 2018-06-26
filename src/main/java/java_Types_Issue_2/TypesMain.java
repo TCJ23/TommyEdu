@@ -36,10 +36,10 @@ public class TypesMain {
         Boolean prawdaNews = new Boolean(true);
         System.out.println("Nie poczujesz różnicy bez autoboxingu " + prawda);
 
-    /* Byte, Short, Integer, Long -> cache objects
-    Float & Double -> DON'T cache objects
-    CACHE ONLY FOR VALUES -127 to 128
-    */
+        /* Byte, Short, Integer, Long -> cache objects
+        Float & Double -> DON'T cache objects
+        CACHE ONLY FOR VALUES -127 to 128
+        */
 
         char c = 'a';
         int kod = c;
