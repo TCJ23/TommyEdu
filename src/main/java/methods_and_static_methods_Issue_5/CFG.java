@@ -12,6 +12,5 @@ class GFG {
         obj.geek("mohit");
         System.out.println(obj.geekName);
 
-
     }
 }
