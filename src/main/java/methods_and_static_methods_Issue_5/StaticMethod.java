@@ -3,12 +3,11 @@ package methods_and_static_methods_Issue_5;
 class StaticMethod {
     public static void main(String[] args) {
 
-        TCJStatic.tcjMe("Tommy J");
-        System.out.println(TCJStatic.name);
+        TCJStatic.tcjMe("TCJstatic");
+        System.out.println(TCJStatic.tcjname);
 
-//        //by Object reference
         TCJStatic obj = new TCJStatic();
-        obj.tcjMe("J Tommy");
-        System.out.println(obj.name);
+        obj.tcjMe("tcjStatic");
+        System.out.println(obj.tcjname);
     }
 }
