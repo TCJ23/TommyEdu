@@ -22,11 +22,11 @@ public class Java2DArray {
         }
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-//                if (i > 3 || j > 3) continue;
+    //                if (i > 3 || j > 3) continue;
 
                 int glassSum =
-                        arr[j][i] + arr[j][i + 1] + arr[j][i + 2]
-                                + arr[j + 1][i + 1] +
+                                arr[j][i] + arr[j][i + 1] + arr[j][i + 2]
+                                            + arr[j + 1][i + 1] +
                                 arr[j + 2][i] + arr[j + 2][i + 1] + arr[j + 2][i + 2];
 
                 if (glassSum > maxVal) maxVal = glassSum;
@@ -39,11 +39,11 @@ public class Java2DArray {
     //    INPUT
             /*
             1 1 1 0 0 0
-0 1 0 0 0 0
-1 1 1 0 0 0
-0 9 2 -4 -4 0
-0 0 0 -2 0 0
-0 0 -1 -2 -4 0
+            0 1 0 0 0 0
+            1 1 1 0 0 0
+            0 9 2 -4 -4 0
+            0 0 0 -2 0 0
+            0 0 -1 -2 -4 0
             1 1 1 0 0 0
             0 1 0 0 0 0
             1 1 1 0 0 0
