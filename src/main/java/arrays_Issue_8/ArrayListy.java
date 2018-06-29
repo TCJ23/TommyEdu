@@ -3,6 +3,8 @@ package arrays_Issue_8;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class ArrayListy {
     public static void main(String[] args) {
@@ -32,7 +34,6 @@ public class ArrayListy {
 //
 //        ArrayList<StringBuilder> stringi2 = new ArrayList<StringBuilder>(arrayList);
 
-
-
+        Collections.addAll(arrayList);
     }
 }
