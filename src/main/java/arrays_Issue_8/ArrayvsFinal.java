@@ -18,9 +18,9 @@ public class ArrayvsFinal {
         for (String s: items
              ) {
             System.out.print(s + " ");
-
         }
     }
+//    ==============================ERROR========================================
     // myArray = anotherArray; ------>// Error, you can't do that. myArray is final
 }
 
