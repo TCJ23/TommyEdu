@@ -2,6 +2,8 @@ package strings_Issue_9;
 
 import java.util.Scanner;
 
+//https://www.hackerrank.com/challenges/valid-username-checker/problem
+
 public class ValidUsernameRegularExpression {
     private static final Scanner scan = new Scanner(System.in);
 
@@ -19,10 +21,9 @@ public class ValidUsernameRegularExpression {
     }
 
     private static class UsernameValidator {
-        /*
-         * Write regular expression here.
-         */
-        public static final String regularExpression = null;
+//        ■ \w A word character (letters (a–z and A–Z), digits, or the "_" [underscore])
+
+        public static final String regularExpression = "^[a-zA-Z]\\w{7,29}$";
     }
 }
 
