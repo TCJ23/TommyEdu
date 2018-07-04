@@ -19,7 +19,7 @@ public class Skaner1 {
         Intuicyjnie jedno z: spacja lub znak /
         Przy użyciu skanera można od razu ustalić separator
         */
-        String delim = "[ /]+";
+        String delim = "[ /]";
 
         Scanner scan = new Scanner(txt).useDelimiter(delim);
 
@@ -32,6 +32,7 @@ public class Skaner1 {
         /*        Aby uzyskać taki sam wynik jak w StringTokenizer
          należy zastosować wyrażenie regularne 1 lub więcej spacji lub znaków /
         */
+        delim = "[ /]+";
 
         //  nowe skanowanie
         scan = new Scanner(txt).useDelimiter(delim);
@@ -42,7 +43,7 @@ public class Skaner1 {
             out.print(quote(scan.next()) + " ");
 
         // nowy tekst
-        txt = "1/2 /3/ 4";
+        txt = " 1/2 /3/ 4";
         scan = new Scanner(txt).useDelimiter(delim);
         out.println("\nTekst : " + quote(txt) + " Separator: " + quote(delim));
 
