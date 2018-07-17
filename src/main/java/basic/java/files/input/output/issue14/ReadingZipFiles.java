@@ -15,8 +15,9 @@ public class ReadingZipFiles {
 
 	public static void main(String[] args) {
 
-		String fileName = "files/archive.zip";
-		
+//		String fileName = "./archive.zip";
+		String fileName = "./files/archive.zip";
+
 		try (InputStream is = new FileInputStream(new File(fileName));
 			 ZipInputStream zis = new ZipInputStream(is);
 			 DataInputStream dis = new DataInputStream(zis);) {

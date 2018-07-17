@@ -1,0 +1,68 @@
+package basic.java.files.input.output.issue14;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.IntStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+public class WritingZipFiles {
+
+	public static void main(String[] args) {
+
+//		String fileName = "D:\\Library\\TommyEdu\\src\\main\\java\\basic\\java\\files\\input\\output\\issue14\\files\\archive.zip";
+		String fileName = "./files/archive.zip"; // NO FOLDER LIKE THAT
+//		String fileName = "./archive.zip";
+		Path path = Paths.get(fileName);
+		Path relative = path.relativize(Paths.get(fileName));
+
+		System.out.println("RELATYWNA " + relative);
+
+		File plik = new File(fileName);
+
+		System.out.println("ABSOLUTNA ścieżka " + plik.getAbsolutePath());
+		try {
+			System.out.println("KANONICZKA ścieżka " + plik.getCanonicalPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("RELATYWNA ścieżka " + plik.getPath());
+
+//		System.out.println("subpath " + path.subpath(0,13)); // > 14 IllegalArgumentException
+		System.out.println("ROOT " + path.getRoot());
+		System.out.println("PARENT " + path.getParent());
+		System.out.println("FILENAME " + path.getFileName());
+
+		try (OutputStream os = new FileOutputStream(new File(fileName));
+			 ZipOutputStream zos = new ZipOutputStream(os);
+			 DataOutputStream dos = new DataOutputStream(zos);) {
+			
+			ZipEntry dirEntry = new ZipEntry("bin/");
+			zos.putNextEntry(dirEntry);
+			
+			ZipEntry binFileEntry = new ZipEntry("bin/ints.bin");
+			zos.putNextEntry(binFileEntry);
+			
+			IntStream.range(0, 1000)
+			.forEach(
+					i -> { try { dos.writeInt(i); } catch (IOException e) {} }
+			);
+			
+			ZipEntry otherDirEntry = new ZipEntry("text/");
+			zos.putNextEntry(otherDirEntry);
+			
+			ZipEntry textFileEntry = new ZipEntry("text/file.txt");
+			zos.putNextEntry(textFileEntry);
+			
+			dos.writeUTF("This is some text content");
+			
+		} catch (IOException e) {
+		}
+	}
+}
