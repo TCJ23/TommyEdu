@@ -2,8 +2,13 @@ package basic.java.packages.imports.issue11;
 
 import java.util.Map;
 
+import static java.lang.System.out;
+
 public class SystemGetProperties {
     public static void main(String[] args) {
+
+        out.printf("statyczny import");
+
         // Get property value or null:
         System.out.println("Java version: "
                 + System.getProperty("java.version"));
@@ -18,7 +23,7 @@ public class SystemGetProperties {
         // List all system properties:
         System.out.println("\nSystem properties:");
         for (Map.Entry<Object, Object> property : System.getProperties().entrySet()) {
-            System.out.printf("%s: %s%n", property.getKey(), property.getValue());
+            out.printf("%s: %s%n", property.getKey(), property.getValue());
         }
     }
 }
