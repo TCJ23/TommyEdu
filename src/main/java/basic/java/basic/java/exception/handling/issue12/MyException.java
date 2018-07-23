@@ -12,7 +12,7 @@ public class MyException {
     }
 
     private static void checkfood(String s) throws BadFoodException {
-        if (s == "malina") {
+        if (s.equals("malina") ) {
             System.out.println("I like it");
         } else throw new BadFoodException();
     }
