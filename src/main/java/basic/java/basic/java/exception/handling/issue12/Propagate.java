@@ -13,7 +13,7 @@ public class Propagate {
         }
     }
 
-    /*private static String reverse(String s) throws Exception {
+    private static String reverse(String s) throws Exception {
         if (s.length() == 0) {
             throw new Exception();
         } else {
@@ -23,19 +23,5 @@ public class Propagate {
             }
             return reverseStr;
         }
-    }*/
-    private static String reverse(String s) {
-            String reverseStr = "";
-        try {
-            for (int i = s.length() - 1; i >= 0; --i) {
-                reverseStr += s.charAt(i);
-            }
-            if (s.length() == 0) {
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return reverseStr;
     }
 }

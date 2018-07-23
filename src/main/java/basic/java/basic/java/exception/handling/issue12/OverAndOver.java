@@ -11,7 +11,11 @@ public class OverAndOver {
             s += "2";
         } finally {
             s += "3";
-            doStuff();
+            try {
+                doStuff();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             s += "4";
         }
         System.out.println(s);
