@@ -2,18 +2,18 @@ package basic.java.basic.java.exception.handling.issue12;
 
 public class Propagate {
     static String s;
+
     public static void main(String[] args) {
         try {
             Propagate.reverse(s);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             System.out.println("Main has finished its life");
         }
     }
 
-    private static String reverse(String s) throws Exception {
+    /*private static String reverse(String s) throws Exception {
         if (s.length() == 0) {
             throw new Exception();
         } else {
@@ -23,5 +23,19 @@ public class Propagate {
             }
             return reverseStr;
         }
+    }*/
+    private static String reverse(String s) {
+            String reverseStr = "";
+        try {
+            for (int i = s.length() - 1; i >= 0; --i) {
+                reverseStr += s.charAt(i);
+            }
+            if (s.length() == 0) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reverseStr;
     }
 }
