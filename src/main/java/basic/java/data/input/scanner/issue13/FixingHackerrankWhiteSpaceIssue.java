@@ -23,11 +23,11 @@ public class FixingHackerrankWhiteSpaceIssue {
     /* THIS IS YOUR INPUT NOW a b 2.0 3 4 */
     //
     public static void main(String[] args) {
-//        System.out.println("Type close to exit");
+        System.out.println("Type close to exit");
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextLine()) {
 //        while (!scan.nextLine().equalsIgnoreCase("close")){
-        int i = 0;
+            int i = 0;
             double d = 0;
             String s = null;
             if (scan.hasNextInt()) {
@@ -39,9 +39,12 @@ public class FixingHackerrankWhiteSpaceIssue {
             } else if (scan.hasNext()) {
                 s = scan.next();
                 System.out.println("String " + s);
+                if (s.equalsIgnoreCase("close")) {
+                    break;
+                }
 //            } else if (scan.nextLine().equalsIgnoreCase("close")){
             }
-                scan.close();
+//            scan.close();
         }
     }
 }
