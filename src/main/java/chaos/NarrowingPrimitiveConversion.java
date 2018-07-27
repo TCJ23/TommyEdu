@@ -1,5 +1,5 @@
 package chaos;
-
+/*      https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html */
 public class NarrowingPrimitiveConversion {
     public static void main(String[] args) {
         float fmin = Float.NEGATIVE_INFINITY;
