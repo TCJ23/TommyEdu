@@ -39,7 +39,7 @@ public class DriveCar {
         // THE CLASS OBJECT
         // You can use the Class object method getName to get just the class name
 
-        System.out.println(superCar.getClass().getName());
+        System.out.println("Use getSimpleName isntead of getName "+ superCar.getClass().getSimpleName());
 
         // You can check if 2 objects are of the same class with getClass()
 
@@ -74,8 +74,8 @@ public class DriveCar {
         System.out.println(superTruck2.getWheels());
 
         // They are separate objects and don't have equal hashcodes
-        System.out.println(superTruck.hashCode());
-        System.out.println(superTruck2.hashCode());
+        System.out.println("Hashcodes after cloning are different " + superTruck.hashCode());
+        System.out.println("Hashcodes after cloning are different " + superTruck2.hashCode());
 
         // There are subobjects defined in an object clone won't
         // also clone them. You'd have to do that manually, but this
