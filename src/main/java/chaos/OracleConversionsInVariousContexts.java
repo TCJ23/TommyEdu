@@ -1,5 +1,6 @@
 package chaos;
 
+/*              https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html            */
 public class OracleConversionsInVariousContexts {
     public static void main(String[] args) {
         // Casting conversion (5.4) of a float literal to

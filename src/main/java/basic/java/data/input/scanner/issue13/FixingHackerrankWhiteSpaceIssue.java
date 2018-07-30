@@ -38,7 +38,7 @@ public class FixingHackerrankWhiteSpaceIssue {
                 System.out.println("Double " + d);
             } else if (scan.hasNext()) {
                 s = scan.next();
-                System.out.println("String " + s);
+                System.out.println("Will exit now " + s);
                 if (s.equalsIgnoreCase("close")) {
                     break;
                 }

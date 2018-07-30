@@ -1,6 +1,7 @@
 package chaos;
 
 import java.util.Scanner;
+
 /*          https://www.hackerrank.com/challenges/java-datatypes/problem */
 public class DataTypesNarrowing {
     public static void main(String[] args) {
@@ -24,7 +25,41 @@ public class DataTypesNarrowing {
                 }
             } catch (Exception e) {
                 System.out.println(scan.next() + " can't be fitted anywhere.");
+
+                /*if (((Long) x) instanceof Long) {
+                    System.out.println("Long");
+                }
+                if (((Byte) x) instanceof Byte) {
+                    System.out.println("Byte");
+                }*/
+                /*     DYNAMIC CASTING       */
+
+/*
+                if (Byte.class.isInstance(x)) {
+                    System.out.println("* byte");
+                }
+                if (Short.class.isInstance(x)) {
+                    System.out.println("* short");
+                }
+                if (Integer.class.isInstance(x)) {
+                    System.out.println("* int");
+                }
+                if (Long.class.isInstance(x)) {
+                    System.out.println("* long");
+                }
+*/
+
+                /*
+                if (x== (byte)x) System.out.println("* byte");
+                if (x== (short)x) System.out.println("* short");
+                if (x== (int)x) System.out.println("* int");
+                if (x== (long) x) System.out.println("* long");
+                */
+//                Byte aByte = new Byte(String.valueOf(x));
+
+//                Integer integer = new Integer((int) x);
             }
+
         }
         scan.close();
     }
