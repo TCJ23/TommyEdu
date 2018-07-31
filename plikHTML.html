@@ -1,0 +1,27 @@
+<apex:page controller="KimbleOne.InvoicePrintController" showHeader="false" sidebar="false" language="{!invoice.KimbleOne__Locale__r.KimbleOne__LanguageCode__c}" renderAs="{!IF($CurrentPage.parameters.renderAs=='html','html','pdf')}">
+
+    <apex:stylesheet value="{!URLFOR($Resource.KimbleOne__PdfHeaderFooterStyle, 'PdfHeaderFooterStyle-A4.css')}"/>
+
+    <KimbleOne:InvoicePrintHeader TheInvoice="{!invoice}" showLogo="{!invoice.KimbleOne__InvoiceTemplate__r.KimbleOne__ShowLogo__c}" logoUrl="{!documentUrl}" showFooter="{!invoice.KimbleOne__InvoiceTemplate__r.KimbleOne__ShowFooter__c}" showPageNumbers="{!invoice.KimbleOne__InvoiceTemplate__r.KimbleOne__ShowPageNumbers__c}"/>
+
+    <html>
+    <body>
+    <br/>
+    <h3>Below is the invoice data that will be sent to SAP. Please review before dispatching to SAP. Client invoices will be issued directly from SAP.</h3>
+    <h3>Below is the invoice data that will be sent tofda Client invoices will be issued directly from SAP.</h3>
+    <br/>
+    <div id="invoicePrintAddressT1Container">
+        <KimbleOne:InvoicePrintAddressT1 TheInvoice="{!invoice}" FromAddress="{!fromAddress}" FromAddressStyle="{!fromAddressStyle}" ToAddress="{!toAddress}" ToAddressStyle="{!toAddressStyle}" customerReference="{!customerReference}" showAccountTaxReference="false"/>
+    </div>
+    <h3>Below is the idfafdaient invoices will be issued directly from SAP.</h3>
+    <h3>Below is the invoice data thafdafdafdavoices will be issued directly from SAP.</h3>
+    <h3>Below is the invoice data that will be sent to SAP. Please review befafd ill be issued directly from SAP.</h3>
+    <div id="invoicePrintBodyContainer">
+        <KimbleOne:InvoicePrintBody TheInvoice="{!invoice}" TheInvoiceSections="{!TheSectionsAndLines}" showAsTabularFormat="{!invoice.KimbleOne__InvoiceFormat__r.KimbleOne__ShowTimeInTabularFormat__c}" showLineNumbers="{!invoice.KimbleOne__InvoiceTemplate__r.KimbleOne__ShowInvoiceLineNumbers__c}" />
+    </div>
+    <br/>
+    <h3>Below is the invoice data that will be sent to SAP. adsfafadsffrom SAP.</h3>
+    <h3>Below is theadfbefore dispatching to SAP. Client invodfadfafdafaddirectly from SAP.</h3>
+    </body>
+    </html>
+</apex:page>
