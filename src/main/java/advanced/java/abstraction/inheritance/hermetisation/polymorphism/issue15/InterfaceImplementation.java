@@ -3,7 +3,7 @@ package advanced.java.abstraction.inheritance.hermetisation.polymorphism.issue15
 import java.time.LocalDateTime;
 
 
-interface InterfaceImplementation {
+public interface InterfaceImplementation {
     abstract int calculateMe();
     Integer casting();
 
