@@ -2,7 +2,6 @@ package advanced.java.collections.issue24;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Random;
 
 public class TCJ implements Comparable<TCJ> {
@@ -45,10 +44,10 @@ public class TCJ implements Comparable<TCJ> {
             System.out.println(x);
             list.add(x);
         }
-        System.out.println(list.size());
+        System.out.println(" Lista zawiera 10 elementów " + list.size());
         System.out.println("nieposortowana " + list);
         Collections.sort(list);
-        System.out.println("Posortujemy tą listę :" + list);
+        System.out.println("Posortujemy tą listę : Collections.sort(list) " + list);
     }
 
 }
