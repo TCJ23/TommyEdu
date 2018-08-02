@@ -1,6 +1,9 @@
 package advanced.java.collections.issue24;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Random;
 
 public class TCJ implements Comparable<TCJ> {
     String name;
@@ -64,34 +67,38 @@ public class TCJ implements Comparable<TCJ> {
         TCJ max = Collections.max(lista2);
         System.out.println("\nmin i max element tej listy to  " + min + " & " + max);
         System.out.println("Postaramy się usunąć min element tej listy " + min);
-
-        for (TCJ tcj : lista2
-                ) {
-            if (tcj.equals(min)) {
-                lista2.remove(tcj);
-                break;
-            } else
-                System.out.println(" W liście pozostają " + tcj);
-        }
         System.out.println("\n gdybym chciał przeprowadzić jakąś inną operację w pętli FOREACH jak \n" +
                 "lista2.addAll(list);" + " dostałbym\n" +
                 "Exception in thread \"main\" java.util.ConcurrentModificationException\n");
-        System.out.println("Aktualny romziar listy_2 to" + lista2.size());
-        System.out.println("Dodamy drugą starą listę 10 elementową do listy2 usuwając jej najmniejszy element\n" +
-                "Wprowadzimy ITERATOR");
-        /*ListIterator<TCJ> listIterator = lista2.listIterator();
-            TCJ tcj = listIterator.next();
-        while (listIterator.hasPrevious()) {
-            if (tcj.equals(min)) {
-                listIterator.remove(tcj);*/
+        System.out.println("Aktualny romziar listy_2 to " + lista2.size());
+        System.out.println("Przeiterujemy się po całej liście i usuniemy jej najmiejszy element a jeśli nie to dodamy nowy\n" +
+                "Wprowadzimy ITERATORLIST");
 
         final Iterator<TCJ> iterator = lista2.iterator();
         while (iterator.hasNext()) {
             TCJ iter = iterator.next();
             if (iter.equals(min)) {
                 iterator.remove();
-            } else lista2.add(list);
+            } else
+                System.out.println(" W liście pozostają " + iter);
         }
-        System.out.println("Nasza nowa lista"+lista2+" ma rozmiar"+ lista2.size());
+        System.out.println(lista2.size());
+
+
+      /*  final ListIterator<TCJ> iterator = lista2.listIterator();
+        while (iterator.hasNext()) {
+            TCJ iter = iterator.next();
+            if (iter.equals(min)) {
+                iterator.remove();
+                lista2.remove(iter);
+//            } else iterator.add(new TCJ("iterator!"));
+//            } else list.addAll(lista2);
+            }
+            System.out.println("ile");
+        }
+        System.out.println("Nasza nowa lista_2" + lista2 + "\n" +
+                " ma rozmiar " + lista2.size());
+        System.out.println("Nasza nowa lista " + list + "\n" +
+                " ma rozmiar " + list.size());*/
     }
 }
