@@ -14,8 +14,8 @@ public class AnagramByMapv2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 //        String a = scanner.nextLine();
-        String a = "HeLLO";
-        String b = "hello";
+        String a = "anagram";
+        String b = "margana";
 //        String b = scanner.nextLine();
 
         if (isAnagram(a, b)) {

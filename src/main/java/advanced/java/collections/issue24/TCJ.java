@@ -33,7 +33,7 @@ public class TCJ implements Comparable<TCJ> {
 
 
     public static void main(String[] args) {
-        System.out.println("Each object TCJ will have random name ");
+        System.out.println("Each object TCJ will have random name using Random ");
         System.out.println(new TCJ("tcj"));
         System.out.println(new TCJ("nieistotne"));
         System.out.println(new TCJ("tcj"));
@@ -44,10 +44,24 @@ public class TCJ implements Comparable<TCJ> {
             System.out.println(x);
             list.add(x);
         }
-        System.out.println(" Lista zawiera 10 elementów " + list.size());
-        System.out.println("nieposortowana " + list);
+        System.out.println("Lista zawiera " + list.size() +" elementów ");
+        System.out.println("Nieposortowana lista - musimy zaimplementować Comparable   " + list);
         Collections.sort(list);
-        System.out.println("Posortujemy tą listę : Collections.sort(list) " + list);
+        System.out.println("Posortujemy tą listę : Collections.sort(list)   " + list);
+        Collections.rotate(list, 2);
+        System.out.println("Zawirujmy albo obróćmy tą listę, pozamieniamy jej elementy co 2, za pomocą Collections.rotate(list, 2);  "
+                + list);
+        Collections.shuffle(list);
+        System.out.println("Pomieszajmy tą listę jeszcze raz za pomocą: Collections.shuffle(list)     " + list);
+
+        System.out.println("Zrobimy nową listę 5 elementów, za pomocą Collections.addAll");
+        ArrayList<TCJ> lista2 = new ArrayList<>();
+        Collections.addAll(lista2, new TCJ("blee"), new TCJ("blee"), new TCJ("blee"), new TCJ("blee"), new TCJ("blee"));
+        System.out.println(lista2 + " rozmiar " + lista2.size());
+        TCJ min = Collections.min(lista2);
+        TCJ max = Collections.max(lista2);
+        System.out.println("min i max element tej listy to  " + min + " & " + max);
     }
+
 
 }

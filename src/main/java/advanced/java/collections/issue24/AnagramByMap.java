@@ -13,8 +13,8 @@ public class AnagramByMap {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 //        String a = scanner.nextLine();
-        String a = "HeLLO";
-        String b = "hello";
+        String a = "anagram";
+        String b = "margana";
 //        String b = scanner.nextLine();
 
         if (isAnagram(a, b)) {
@@ -41,7 +41,7 @@ public class AnagramByMap {
                 System.out.print("letter-> " + c + "\n");
                 System.out.println("count "+ count);
             }
-
+            System.out.println("Second word");
             for (char c : ch2) {
                 int count = -1;
                 if (lettersInWord1.containsKey(c)) {
