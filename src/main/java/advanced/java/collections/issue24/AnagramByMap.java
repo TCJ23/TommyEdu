@@ -1,6 +1,5 @@
 package advanced.java.collections.issue24;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -13,13 +12,14 @@ https://stackoverflow.com/questions/15045640/how-to-check-if-two-words-are-anagr
 public class AnagramByMap {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String a = scanner.nextLine();
-        String b = scanner.nextLine();
+//        String a = scanner.nextLine();
+        String a = "HeLLO";
+        String b = "hello";
+//        String b = scanner.nextLine();
 
-        if (isAnagram(a,b)){
+        if (isAnagram(a, b)) {
             System.out.println("Anagrams");
-        }
-        else {
+        } else {
             System.out.println();
         }
         scanner.close();
@@ -38,6 +38,8 @@ public class AnagramByMap {
                     count = lettersInWord1.get(c) + 1;
                 }
                 lettersInWord1.put(c, count);
+                System.out.print("letter-> " + c + "\n");
+                System.out.println("count "+ count);
             }
 
             for (char c : ch2) {
@@ -46,6 +48,8 @@ public class AnagramByMap {
                     count = lettersInWord1.get(c) - 1;
                 }
                 lettersInWord1.put(c, count);
+                System.out.print("letter-> " + c + "\n");
+                System.out.println("count " + count);
             }
 
             for (char c : lettersInWord1.keySet()) {
