@@ -1,9 +1,6 @@
 package advanced.java.collections.issue24;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 public class TCJ implements Comparable<TCJ> {
     String name;
@@ -74,31 +71,16 @@ public class TCJ implements Comparable<TCJ> {
         System.out.println("Przeiterujemy się po całej liście i usuniemy jej najmiejszy element a jeśli nie to dodamy nowy\n" +
                 "Wprowadzimy ITERATORLIST");
 
-        final Iterator<TCJ> iterator = lista2.iterator();
+        final ListIterator<TCJ> iterator = lista2.listIterator();
         while (iterator.hasNext()) {
             TCJ iter = iterator.next();
             if (iter.equals(min)) {
                 iterator.remove();
             } else
+                iterator.add(new TCJ("sdggsd"));
                 System.out.println(" W liście pozostają " + iter);
         }
         System.out.println(lista2.size());
 
-
-      /*  final ListIterator<TCJ> iterator = lista2.listIterator();
-        while (iterator.hasNext()) {
-            TCJ iter = iterator.next();
-            if (iter.equals(min)) {
-                iterator.remove();
-                lista2.remove(iter);
-//            } else iterator.add(new TCJ("iterator!"));
-//            } else list.addAll(lista2);
-            }
-            System.out.println("ile");
-        }
-        System.out.println("Nasza nowa lista_2" + lista2 + "\n" +
-                " ma rozmiar " + lista2.size());
-        System.out.println("Nasza nowa lista " + list + "\n" +
-                " ma rozmiar " + list.size());*/
     }
 }
