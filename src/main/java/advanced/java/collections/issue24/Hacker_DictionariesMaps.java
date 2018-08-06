@@ -5,7 +5,7 @@ package advanced.java.collections.issue24;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class DictionariesMaps {
+public class Hacker_DictionariesMaps {
 
     public static void main(String[] args) {
         HashMap<Object, Object> map = new HashMap<>();

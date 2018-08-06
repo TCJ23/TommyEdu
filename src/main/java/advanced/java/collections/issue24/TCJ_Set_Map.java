@@ -7,13 +7,24 @@ import java.util.*;
 
 public class TCJ_Set_Map {
     private String name;
-    private Integer size;
+    private int size;
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 
     public static void main(String[] args) {
         List<TCJ_Set_Map> arrayLista = create10TCJdupes("bla bla", 5);
         List<TCJ_Set_Map> arrayLista2 = create10TCJdupes("hi hi ", 19);
         List<String> stringi = new ArrayList<>();
         List<String> stringi2 = new ArrayList<>();
+
         arrayLista.addAll(arrayLista2);
         for (TCJ_Set_Map t : arrayLista
                 ) {
@@ -35,7 +46,7 @@ public class TCJ_Set_Map {
         System.out.println("Hashset size is " + noDupes.size());
 
         Set<String> uniques = new HashSet<String>(stringi);
-        Set<String> dups    = new HashSet<String>(stringi);
+        Set<String> dups = new HashSet<String>(stringi);
         for (String a : args)
             if (!uniques.add(a))
                 dups.add(a);
@@ -49,17 +60,18 @@ public class TCJ_Set_Map {
 
     public TCJ_Set_Map(String name, Integer size) {
         if (size > 5) {
-//            String generateSize = RandomStringUtils.random(size);
-            String generateName = RandomStringUtils.random(size, name);
+//            String generateName = RandomStringUtils.random(size, name);
+            String generateName = RandomStringUtils.randomAlphabetic(3);
+            String randSize = RandomStringUtils.randomNumeric(2);
+            //            double generateSize = size * Math.random();
             this.name = "TCJ" + generateName;
-//            this.size = Integer.valueOf(generateSize);
-            this.size = size;
+            this.size = Integer.valueOf(randSize);
         } else if (size <= 5) {
-//            String generateSize = RandomStringUtils.random(size);
-            String generateName = RandomStringUtils.random(size, name);
+            String generateName = RandomStringUtils.randomAlphabetic(3);
             this.name = generateName + "TCJ";
-//            this.size = Integer.valueOf(generateSize);
-            this.size = size;
+//            double generateSize = size * Math.random();
+            String randSize = RandomStringUtils.randomNumeric(2);
+            this.size = Integer.valueOf(randSize);
         }
     }
 
@@ -67,10 +79,12 @@ public class TCJ_Set_Map {
         ArrayList<TCJ_Set_Map> arrayList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             if (i <= 5) {
-                TCJ_Set_Map x = new TCJ_Set_Map("bla", 1);
+                TCJ_Set_Map x = new TCJ_Set_Map("ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx", 4);
+                arrayList.add(x);
                 arrayList.add(x);
             } else {
-                TCJ_Set_Map x = new TCJ_Set_Map("bla", 10);
+                TCJ_Set_Map x = new TCJ_Set_Map("ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx", 10);
+                arrayList.add(x);
                 arrayList.add(x);
             }
         }
