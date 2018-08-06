@@ -2,14 +2,14 @@ package advanced.java.collections.issue24;
 
 import java.util.*;
 
-public class TCJ implements Comparable<TCJ> {
+public class TCJ_ArrayList implements Comparable<TCJ_ArrayList> {
     String name;
 
     public String getName() {
         return name;
     }
 
-    public TCJ(String name) {
+    public TCJ_ArrayList(String name) {
         Random random = new Random();
         int first = random.nextInt(26) + 65;  //Get random ASCII code in letter range
         char firstChar = new Character((char) first);  //Convert to char
@@ -25,20 +25,20 @@ public class TCJ implements Comparable<TCJ> {
     }
 
     @Override
-    public int compareTo(TCJ tcj) {
+    public int compareTo(TCJ_ArrayList tcj) {
         return name.compareTo(tcj.getName());
     }
 
 
     public static void main(String[] args) {
-        System.out.println("Each object TCJ will have random name using Random java.util.Random ");
-        System.out.println(new TCJ("tcj"));
-        System.out.println(new TCJ("nieistotne"));
-        System.out.println(new TCJ("tcj"));
+        System.out.println("Each object TCJ_ArrayList will have random name using Random java.util.Random ");
+        System.out.println(new TCJ_ArrayList("tcj"));
+        System.out.println(new TCJ_ArrayList("nieistotne"));
+        System.out.println(new TCJ_ArrayList("tcj"));
         System.out.println("--------------------------- CREATING A ARRAYLIST --------------------------");
-        ArrayList<TCJ> list = new ArrayList<>();
+        ArrayList<TCJ_ArrayList> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            TCJ x = new TCJ("nieistotne");
+            TCJ_ArrayList x = new TCJ_ArrayList("nieistotne");
             System.out.println(x);
             list.add(x);
         }
@@ -57,11 +57,11 @@ public class TCJ implements Comparable<TCJ> {
         System.out.println();
         System.out.println("Zrobimy nową listę 5 elementów, za pomocą Collections.addAll");
         System.out.println();
-        ArrayList<TCJ> lista2 = new ArrayList<>();
-        Collections.addAll(lista2, new TCJ("blee"), new TCJ("blee"), new TCJ("blee"), new TCJ("blee"), new TCJ("blee"));
+        ArrayList<TCJ_ArrayList> lista2 = new ArrayList<>();
+        Collections.addAll(lista2, new TCJ_ArrayList("blee"), new TCJ_ArrayList("blee"), new TCJ_ArrayList("blee"), new TCJ_ArrayList("blee"), new TCJ_ArrayList("blee"));
         System.out.println(lista2 + " rozmiar " + lista2.size());
-        TCJ min = Collections.min(lista2);
-        TCJ max = Collections.max(lista2);
+        TCJ_ArrayList min = Collections.min(lista2);
+        TCJ_ArrayList max = Collections.max(lista2);
         System.out.println("\nmin element tej listy to "+ min + "\na max element tej listy to  " + max);
         System.out.println("Postaramy się usunąć min element tej listy " + min);
         System.out.println("\n gdybym chciał przeprowadzić jakąś inną operację w pętli FOREACH jak \n" +
@@ -71,13 +71,13 @@ public class TCJ implements Comparable<TCJ> {
         System.out.println("Przeiterujemy się po całej liście i usuniemy jej najmiejszy element a jeśli nie to dodamy nowy\n" +
                 "Wprowadzimy ITERATORLIST");
 
-        final ListIterator<TCJ> iterator = lista2.listIterator();
+        final ListIterator<TCJ_ArrayList> iterator = lista2.listIterator();
         while (iterator.hasNext()) {
-            TCJ iter = iterator.next();
+            TCJ_ArrayList iter = iterator.next();
             if (iter.equals(min)) {
                 iterator.remove();
             } else
-                iterator.add(new TCJ("sdggsd"));
+                iterator.add(new TCJ_ArrayList("sdggsd"));
                 System.out.println(" W liście pozostają " + iter + " ale za każdym nieznalezionym razem dodawaliśmy nowy obiekt");
         }
         System.out.println("Aktualny rozmiar listy_2 " + lista2.size());
