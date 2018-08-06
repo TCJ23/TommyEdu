@@ -62,7 +62,7 @@ public class TCJ implements Comparable<TCJ> {
         System.out.println(lista2 + " rozmiar " + lista2.size());
         TCJ min = Collections.min(lista2);
         TCJ max = Collections.max(lista2);
-        System.out.println("\nmin i max element tej listy to  " + min + " & " + max);
+        System.out.println("\nmin element tej listy to "+ min + "\na max element tej listy to  " + max);
         System.out.println("Postaramy się usunąć min element tej listy " + min);
         System.out.println("\n gdybym chciał przeprowadzić jakąś inną operację w pętli FOREACH jak \n" +
                 "lista2.addAll(list);" + " dostałbym\n" +
@@ -78,9 +78,9 @@ public class TCJ implements Comparable<TCJ> {
                 iterator.remove();
             } else
                 iterator.add(new TCJ("sdggsd"));
-                System.out.println(" W liście pozostają " + iter);
+                System.out.println(" W liście pozostają " + iter + " ale za każdym nieznalezionym razem dodawaliśmy nowy obiekt");
         }
-        System.out.println(lista2.size());
+        System.out.println("Aktualny rozmiar listy_2 " + lista2.size());
 
     }
 }
