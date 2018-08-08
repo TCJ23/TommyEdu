@@ -1,11 +1,11 @@
-package advanced.java.constructors;
+package advanced.java.constructors.issue21;
 
 abstract class ConstructMe {
     public ConstructMe() {
         System.out.println("Abstract");
     }
 }
-
+/* nadrzedny super i jakiś dodatkowy za pomocą super parametry*/
 class Parent extends ConstructMe {
     public Parent() {
         System.out.println("Parent");

@@ -1,4 +1,4 @@
-package advanced.java.constructors;
+package advanced.java.constructors.issue21;
 
 public class PrivateConstructorSingleTon {
     private static PrivateConstructorSingleTon myObj;
