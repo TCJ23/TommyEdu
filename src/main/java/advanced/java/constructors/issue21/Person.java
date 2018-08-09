@@ -37,17 +37,25 @@ class Student extends Person {
 
     @Override
     public String toString() {
-        return super.toString()
-                + "Student{" +
-                "degree='" + degree + '\'' +
-                '}';
+            return super.toString()
+                    + "Student{" +
+                    "degree='" + ((degree == null) ? "brak": degree) + '\'' +
+                    '}';
     }
+   /*     if (degree == null) {
+            return super.toString();
+        } else
+            return super.toString()
+                    + "Student{" +
+                    "degree='" + degree + '\'' +
+                    '}';
+    }*/
+
 
     public static void main(String[] args) {
         Student student = new Student("imię", true, 20);
         Student student2 = new Student("imię2", false, 22, "magister");
         System.out.println(student.toString());
         System.out.println(student2.toString());
-
     }
 }
