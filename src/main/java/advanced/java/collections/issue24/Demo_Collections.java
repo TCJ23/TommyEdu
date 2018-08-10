@@ -87,5 +87,13 @@ public class Demo_Collections {
         Integer[] numbers3 = listNumbers.toArray(new Integer[0]);
         System.out.println(words);
 
+        List<Integer> source = Arrays.asList(18, 33, 66, 99, 22, 33, 66, 11, 100);
+        List<Integer> target = Arrays.asList(33, 66);
+        System.out.println(source.get(5));
+
+        int lastIndexOfSubList = Collections.lastIndexOfSubList(source, target);
+
+        System.out.println("Last index : " + lastIndexOfSubList);
+
     }
 }

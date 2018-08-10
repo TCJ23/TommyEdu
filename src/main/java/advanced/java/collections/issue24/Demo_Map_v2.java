@@ -93,17 +93,12 @@ class Demo_Map_v2 {
         }
         Set<Map.Entry<String, String>> entries = mapCountryCodes.entrySet();
 
-       /* for (Map.Entry<String, String> entry : entries) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            System.out.println("ENTRY SET " + key + " => " + value);
-        }*/
         for (Map.Entry<String, String> entry : entries) {
             String key = entry.getKey();
             String value = entry.getValue();
             if (key.equalsIgnoreCase("1")) {
                 entry.setValue("POLAND");
-                System.out.println("ENTRY SET " + key + " => " + value);
+                System.out.println("ENTRY SET " + key + " => " + entry.getValue());
             }
             System.out.println("ENTRY SET " + key + " => " + value);
         }
