@@ -17,7 +17,7 @@ public class Demo_regex {
         System.out.println(challenge1.matches(regExp1));
         System.out.println(challenge2.matches(regExp1));
 
-        String regExp3 = "I want a \\w+.";
+        String regExp3 = "I want a \\w+."; //using matcher must compile
         Pattern pattern = Pattern.compile(regExp3);
         Matcher matcher = pattern.matcher(challenge1);
         System.out.println(matcher.matches());
@@ -29,24 +29,24 @@ public class Demo_regex {
         System.out.println(challenge4.replaceAll(" ", "_"));
         System.out.println(challenge4.replaceAll("\\s", "_"));
 
-        String challenge5 = "zaaabccccccccdddefffg";
-        System.out.println(challenge5.matches("[abcdefg]+"));
-        System.out.println(challenge5.matches("[a-g]+"));
+        String challenge5 = "zaaabccccccccdddefffg"; //must matcg whole string
+        System.out.println(challenge5.matches("[abcdefg]+")); //inclusive
+        System.out.println(challenge5.matches("[a-g]+")); //range
 
-        System.out.println(challenge5.matches("^a{3}bc{8}d{3}ef{3}g$"));
-        System.out.println(challenge5.replaceAll("^a{3}bc{8}d{3}ef{3}g$", "REPLACED"));
+        System.out.println(challenge5.matches("^a{3}bc{8}d{3}ef{3}g$")); // match challenge 5 in its entirety QUANTIFIERS ilość wystąpień
+        System.out.println(challenge5.replaceAll("^a{3}bc{8}d{3}ef{3}g$", "REPLACED")); //returns true
 
-        String challenge7 = "abcd.135";
+        String challenge7 = "abcd.135"; // series of letters .period series of digits TRUE kjisl.22 FALSE tcj.12A
         System.out.println(challenge7.matches("^[A-z][a-z]+\\.\\d+$"));
 
-        String challenge8 = "abcd.135uvqz.7tzik.999";
-        Pattern pattern8 = Pattern.compile("[A-Za-z]+\\.(\\d+)");
+        String challenge8 = "abcd.135uvqz.7tzik.999"; // print group of digits
+        Pattern pattern8 = Pattern.compile("[A-Za-z]+\\.(\\d+)"); // zauwaz A-Za-z
         Matcher matcher8 = pattern8.matcher(challenge8);
         while (matcher8.find()) {
             System.out.println("Occurrence: " + matcher8.group(1));
         }
 
-        String challenge9 = "abcd.135\tuvqz.7\ttzik.999\n";
+        String challenge9 = "abcd.135\tuvqz.7\ttzik.999\n"; // new line and tab as chall 8 tab and newlines are considered WHITESPACE
         Pattern pattern9 = Pattern.compile("[A-Za-z]+\\.(\\d+)\\s");
         Matcher matcher9 = pattern9.matcher(challenge9);
         while (matcher9.find()) {
@@ -54,13 +54,13 @@ public class Demo_regex {
         }
 
         String challenge10 = "abcd.135\tuvqz.7\ttzik.999\n";
-        Pattern pattern10 = Pattern.compile("[A-Za-z]+\\.(\\d+)\\s");
+        Pattern pattern10 = Pattern.compile("[A-Za-z]+\\.(\\d+)\\s"); // start end indeksy ODEJMUJEMY od END
         Matcher matcher10 = pattern10.matcher(challenge10);
         while (matcher10.find()) {
             System.out.println("Occurrence: start = " + matcher10.start(1) + " end = " + (matcher10.end(1) - 1));
         }
 
-        String challenge11 = "{0, 2}, {0, 5}, {1, 3}, {2, 4}";
+        String challenge11 = "{0, 2}, {0, 5}, {1, 3}, {2, 4}"; // extract between curly braces only
         Pattern pattern11 = Pattern.compile("\\{(.+?)\\}");
         Matcher matcher11 = pattern11.matcher(challenge11);
         while (matcher11.find()) {
@@ -68,19 +68,19 @@ public class Demo_regex {
         }
         System.out.println("*********************");
 
-        String challenge11a = "{0, 2}, {0, 5}, {1, 3}, {2, 4} {x, y}, {6, 34}, {11, 12}";
+        String challenge11a = "{0, 2}, {0, 5}, {1, 3}, {2, 4} {x, y}, {6, 34}, {11, 12}"; // tylko liczby
         Pattern pattern11a = Pattern.compile("\\{(\\d+, \\d+)\\}");
         Matcher matcher11a = pattern11a.matcher(challenge11a);
         while (matcher11a.find()) {
             System.out.println("Occurrence: " + matcher11a.group(1));
         }
 
-        String challenge12 = "11111";
+        String challenge12 = "11111"; // US ZIP CODE
         System.out.println(challenge12.matches("^\\d{5}$"));
 
-        String challenge13 = "11111-1111";
+        String challenge13 = "11111-1111"; // with dash
         System.out.println(challenge13.matches("^\\d{5}-\\d{4}$"));
-
+        // OPTIONAL after DASH
         System.out.println(challenge12.matches("^\\d{5}(-\\d{4})?$"));
         System.out.println(challenge13.matches("^\\d{5}(-\\d{4})?$"));
 
