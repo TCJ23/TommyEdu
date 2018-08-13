@@ -26,21 +26,24 @@ class Student extends Person {
 
     private String degree;
 
-    public Student(String name, boolean mood, int dollars) {
+    Student(String name, boolean mood, int dollars) {
         super(name, mood, dollars);
+        this.degree = "default";
+//        this(name, mood, dollars, "DEF"); // wywołuje 4 argumentowy i nadal działa jak wyowłanie jawne !
+
     }
 
-    public Student(String name, boolean mood, int dollars, String degree) {
+    Student(String name, boolean mood, int dollars, String degree) {
         super(name, mood, dollars);
         this.degree = degree;
     }
 
     @Override
     public String toString() {
-            return super.toString()
-                    + "Student{" +
-                    "degree='" + ((degree == null) ? "brak": degree) + '\'' +
-                    '}';
+        return super.toString()
+                + "Student{" +
+                "degree='" + ((degree == null) ? "brak" : degree) + '\'' +
+                '}';
     }
    /*     if (degree == null) {
             return super.toString();
