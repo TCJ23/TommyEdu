@@ -3,10 +3,10 @@ package advanced.java.generics.issue23;
 class Demo_Generic_Class {
     public static void main(String[] args) {
 
-        SimpleGeneric<String> string = new SimpleGeneric<String>(" TO JA STRING");
-        SimpleGeneric<Boolean> bool = new SimpleGeneric<Boolean>(Boolean.TRUE);
-        bool.printType();
+        SimpleGeneric<String> string = new SimpleGeneric<>(" TO JA STRING");
+        SimpleGeneric<Boolean> bool = new SimpleGeneric<>(Boolean.TRUE);
         string.printType();
+        bool.printType();
     }
 }
 
