@@ -13,6 +13,8 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <propka>testing filtering</propka>
     </properties>
     <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
     <!-- <dependencyManagement>
@@ -33,7 +35,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
@@ -49,93 +51,28 @@
         </dependency>
     </dependencies>
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.4</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.3</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.7</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.1</version>
-                <executions>
-                    <execution>
-                        <id>id.validate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <echo>validate phase</echo>
-                            </tasks>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>id.compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <echo>compile phase</echo>
-                            </tasks>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>id.test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <echo>test phase</echo>
-                            </tasks>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>id.package</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <echo>package phase</echo>
-                            </tasks>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>id.deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <echo>deploy phase</echo>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
+    <profiles>
+        <profile>
+            <id>TCJ</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <propka>testing overwriting with TCJ profile</propka>
+            </properties>
+        </profile>
+        <profile>
+            <id>Adam</id>
+            <properties>
+                <propka>testing overwriting with Adam profile</propka>
+            </properties>
+        </profile>
+    </profiles>
 </project>
