@@ -9,7 +9,11 @@ public class ScannerALesson {
         System.out.println("1");
         scanner.hasNextLine();
         System.out.println("2");
-        scanner.nextLine();
+        String s = scanner.nextLine();
+        System.out.println(s);
         System.out.println("3");
+        scanner.hasNextLine();
+        String s1 = scanner.nextLine();
+        System.out.println(s1);
     }
 }
