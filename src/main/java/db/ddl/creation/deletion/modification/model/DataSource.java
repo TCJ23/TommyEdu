@@ -193,8 +193,8 @@ public class DataSource {
              ResultSet results = statement.executeQuery(sql)) {
 
             ResultSetMetaData meta = results.getMetaData();
-            int numColumns = meta.getColumnCount();
-            for (int i = 1; i <= numColumns; i++) {
+            int liczbaKolumn = meta.getColumnCount();
+            for (int i = 1; i <= liczbaKolumn; i++) {
                 System.out.format("Kolumna %d w tabeli piosenki ma nazwę %s\n",
                         i, meta.getColumnName(i));
             }
