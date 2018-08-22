@@ -38,6 +38,7 @@ public class MusicDB {
         }
         datasource.querySongsMetadata();
         System.out.println("Liczba piosenek " + datasource.getCount(DataSource.TABLE_SONGS));
+        datasource.createViewForSongArtists();
         datasource.close();
     }
 }
