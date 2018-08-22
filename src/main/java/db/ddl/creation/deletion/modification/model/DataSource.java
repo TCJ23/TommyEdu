@@ -7,21 +7,59 @@ import java.util.List;
 public class DataSource {
     public static final String DB_NAME = "music.db";
     public static final String CONNECTION_STRING = "jdbc:sqlite:D:\\Library\\TommyEDU2mvn\\" + DB_NAME;
-
-
     public static final String TABLE_ALBUMS = "albums";
     public static final String COLUMN_ALBUM_ID = "_id";
     public static final String COLUMN_ALBUM_NAME = "name";
     public static final String COLUMN_ALBUM_ARTIST = "artist";
+    public static final int INDEX_ALBUM_ID = 1;
+    public static final int INDEX_ALBUM_NAME = 2;
+    public static final int INDEX_ALBUM_ARTIST = 3;
 
     public static final String TABLE_ARTISTS = "artists";
     public static final String COLUMN_ARTIST_ID = "_id";
     public static final String COLUMN_ARTIST_NAME = "name";
+    public static final int INDEX_ARTIST_ID = 1;
+    public static final int INDEX_ARTIST_NAME = 2;
 
     public static final String TABLE_SONGS = "songs";
+    public static final String COLUMN_SONG_ID = "_id";
     public static final String COLUMN_SONG_TRACK = "track";
     public static final String COLUMN_SONG_TITLE = "title";
     public static final String COLUMN_SONG_ALBUM = "album";
+    public static final int INDEX_SONG_ID = 1;
+    public static final int INDEX_SONG_TRACK = 2;
+    public static final int INDEX_SONG_TITLE = 3;
+    public static final int INDEX_SONG_ALBUM = 4;
+
+    public static final int ORDER_BY_NONE = 1;
+    public static final int ORDER_BY_ASC = 2;
+    public static final int ORDER_BY_DESC = 3;
+
+    /*     ENUM + SINGLETON  BYLBY WSKAZANY          */
+
+    public static final String QUERY_ALBUMS_BY_ARTIST_START =
+            "SELECT " + TABLE_ALBUMS + '.' + COLUMN_ALBUM_NAME + " FROM " + TABLE_ALBUMS +
+                    " INNER JOIN " + TABLE_ARTISTS + " ON " + TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST +
+                    " = " + TABLE_ARTISTS + "." + COLUMN_ARTIST_ID +
+                    " WHERE " + TABLE_ARTISTS + "." + COLUMN_ARTIST_NAME + " = \"";
+
+    public static final String QUERY_ALBUMS_BY_ARTIST_SORT =
+            " ORDER BY " + TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " COLLATE NOCASE ";
+
+    public static final String QUERY_ARTIST_FOR_SONG_START =
+            "SELECT " + TABLE_ARTISTS + "." + COLUMN_ARTIST_NAME + ", " +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + ", " +
+                    TABLE_SONGS + "." + COLUMN_SONG_TRACK + " FROM " + TABLE_SONGS +
+                    " INNER JOIN " + TABLE_ALBUMS + " ON " +
+                    TABLE_SONGS + "." + COLUMN_SONG_ALBUM + " = " + TABLE_ALBUMS + "." + COLUMN_ALBUM_ID +
+                    " INNER JOIN " + TABLE_ARTISTS + " ON " +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST + " = " + TABLE_ARTISTS + "." + COLUMN_ARTIST_ID +
+                    " WHERE " + TABLE_SONGS + "." + COLUMN_SONG_TITLE + " = \"";
+
+    public static final String QUERY_ARTIST_FOR_SONG_SORT =
+            " ORDER BY " + TABLE_ARTISTS + "." + COLUMN_ARTIST_NAME + ", " +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " COLLATE NOCASE ";
+
 
     private Connection conn;
 
@@ -47,17 +85,23 @@ public class DataSource {
         }
     }
 
-    public List<Artist> queryArtist() {
-      /*  Statement statement = null;
-        ResultSet resultSet = null;*/
+    public List<Artist> queryArtist(int sortOrder) {
 
-        /*    TRY WITH RESOURCES sprawia że nie potrzebujemy finally blok */
+        StringBuilder sb = new StringBuilder("SELECT * FROM ");
+        sb.append(TABLE_ARTISTS);
+        if (sortOrder != ORDER_BY_NONE) {
+            sb.append(" ORDER BY ");
+            sb.append(COLUMN_ARTIST_NAME);
+            sb.append(" COLLATE NOCASE ");
+            if (sortOrder == ORDER_BY_DESC) {
+                sb.append("DESC");
+            } else {
+                sb.append("ASC");
+            }
+        }
+
         try (Statement statement = conn.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS)) {
-        /*try {
-            statement = conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM" + TABLE_ARTISTS);*/
-
+             ResultSet resultSet = statement.executeQuery(sb.toString())) {
             List<Artist> artists = new ArrayList<>();
             while (resultSet.next()) {
                 Artist artist = new Artist();
@@ -70,24 +114,90 @@ public class DataSource {
             System.out.println("Złe QUERY! " + e.getMessage());
             return null;
         }
-        /* finally {
-         *//*     Jeśli złapało by jeden wyjątek to drugi nie byłby złapany     *//*
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("No i kupa nie zamknęło resultSet " + e.getMessage());
-                e.printStackTrace();
+    }
+
+    public List<String> queryAlbumsForArtist(String artistName, int sortOrder) {
+
+        StringBuilder sb = new StringBuilder(QUERY_ALBUMS_BY_ARTIST_START);
+        sb.append(artistName);
+        sb.append("\"");
+
+        if (sortOrder != ORDER_BY_NONE) {
+            sb.append(QUERY_ALBUMS_BY_ARTIST_SORT);
+            if (sortOrder == ORDER_BY_DESC) {
+                sb.append("DESC");
+            } else {
+                sb.append("ASC");
             }
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("No i dupa nie zamknęło statement " + e.getMessage());
-                e.printStackTrace();
+        }
+
+        System.out.println("SQL statement = " + sb.toString());
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sb.toString())) {
+
+            List<String> albums = new ArrayList<>();
+            while (results.next()) {
+                albums.add(results.getString(1));
             }
-        }*/
+
+            return albums;
+
+        } catch (SQLException e) {
+            System.out.println("Nie znalazłem albumów dla tego artysty : " + e.getMessage());
+            return null;
+        }
+    }
+
+    public List<SongArtist> queryArtistsForSong(String songName, int sortOrder) {
+
+        StringBuilder sb = new StringBuilder(QUERY_ARTIST_FOR_SONG_START);
+        sb.append(songName);
+        sb.append("\"");
+
+        if (sortOrder != ORDER_BY_NONE) {
+            sb.append(QUERY_ARTIST_FOR_SONG_SORT);
+            if (sortOrder == ORDER_BY_DESC) {
+                sb.append("DESC");
+            } else {
+                sb.append("ASC");
+            }
+        }
+
+        System.out.println("SQL Statement: " + sb.toString());
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sb.toString())) {
+
+            List<SongArtist> songArtists = new ArrayList<>();
+
+            while (results.next()) {
+                SongArtist songArtist = new SongArtist();
+                songArtist.setArtistName(results.getString(1));
+                songArtist.setAlbumName(results.getString(2));
+                songArtist.setTrack(results.getInt(3));
+                songArtists.add(songArtist);
+            }
+
+            return songArtists;
+        } catch (SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public void querySongsMetadata() {
+        String sql = "SELECT * FROM " + TABLE_SONGS;
+        try (Statement stm = conn.createStatement();
+        ResultSet resultSet = stm.executeQuery(sql)) {
+
+            ResultSetMetaData meta = resultSet.getMetaData();
+            int liczbaKolumn = meta.getColumnCount();
+            for (int i = 1; i < liczbaKolumn; i++) {
+                System.out.format("Kolumna %d w piosenkach ma nazwę %s\n",i, meta.getCatalogName(i));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
