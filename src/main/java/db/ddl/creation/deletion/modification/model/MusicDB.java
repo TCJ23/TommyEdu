@@ -38,7 +38,18 @@ public class MusicDB {
         }
         datasource.querySongsMetadata();
         System.out.println("Liczba piosenek " + datasource.getCount(DataSource.TABLE_SONGS));
+
         datasource.createViewForSongArtists();
+        songArtists = datasource.querySongInfoView("She's On Fire");
+        if(songArtists.isEmpty()) { // GOOD PRACTICE IS EMPTY INSTEAD OF NULL !!!
+            System.out.println("Couldn't find the artist for the song");
+            return;
+        }
+        for (SongArtist artist : songArtists) {
+            System.out.println("WIDOK - Artist name = " + artist.getArtistName() +
+                    " Album name = " + artist.getAlbumName() +
+                    " Track number = " + artist.getTrack());
+        }
         datasource.close();
     }
 }
