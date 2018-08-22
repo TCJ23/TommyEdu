@@ -188,16 +188,33 @@ public class DataSource {
 
     public void querySongsMetadata() {
         String sql = "SELECT * FROM " + TABLE_SONGS;
-        try (Statement stm = conn.createStatement();
-        ResultSet resultSet = stm.executeQuery(sql)) {
 
-            ResultSetMetaData meta = resultSet.getMetaData();
-            int liczbaKolumn = meta.getColumnCount();
-            for (int i = 1; i < liczbaKolumn; i++) {
-                System.out.format("Kolumna %d w piosenkach ma nazwę %s\n",i, meta.getCatalogName(i));
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sql)) {
+
+            ResultSetMetaData meta = results.getMetaData();
+            int numColumns = meta.getColumnCount();
+            for (int i = 1; i <= numColumns; i++) {
+                System.out.format("Kolumna %d w tabeli piosenki ma nazwę %s\n",
+                        i, meta.getColumnName(i));
             }
         } catch (SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+        }
+    }
+
+
+    public int getCount(String tabela) {
+        String sql = "SELECT COUNT(*) FROM " + tabela;
+        try (Statement statement = conn.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            int count = resultSet.getInt(1);
+            return count;
+
+        } catch (SQLException e) {
+            System.out.println("Ej coś poszło nie tak " + e.getMessage());
             e.printStackTrace();
         }
+        return -1;
     }
 }
