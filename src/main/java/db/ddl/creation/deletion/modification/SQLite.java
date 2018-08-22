@@ -1,3 +1,5 @@
+package db.ddl.creation.deletion.modification;
+
 import java.sql.*;
 
 public class SQLite {
@@ -11,7 +13,7 @@ public class SQLite {
 //            connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS contacts " +
-                    "(name TEXT, phone INTEGER, email TEXT)");
+                                    "(name TEXT, phone INTEGER, email TEXT)");
           /*  statement.execute("INSERT INTO contacts (name, phone, email)" +
                     "VALUES('Tomi', 605880002, 'tomi@email.com')");
             statement.execute("INSERT INTO contacts (name, phone, email)" +
@@ -20,18 +22,19 @@ public class SQLite {
                     "VALUES('Dex', '+48 664 201 455', 'dex@email.com')");*/
 //            statement.execute("DELETE FROM contacts WHERE name='Tomi'");
 //            statement.execute("UPDATE contacts SET phone=4444 WHERE name='Max'");
-            statement.execute("SELECT * FROM contacts");
-            ResultSet resultSet = statement.getResultSet();
+//            statement.execute("SELECT * FROM contacts");
+//            ResultSet resultSet = statement.getResultSet();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM contacts");
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("name") + " " +
                         resultSet.getInt("phone") + " " +
                         resultSet.getString("email"));
             }
-            resultSet.close();
-
             /*      ORDER IS IMPORTANT            */
+            resultSet.close();
             statement.close();
             connection.close();
+
         } catch (SQLException e) {
             System.out.println("Coś poszło nie tak " + e.getMessage());
         }
