@@ -40,9 +40,10 @@ public class MusicDB {
         System.out.println("Liczba piosenek " + datasource.getCount(DataSource.TABLE_SONGS));
 
         datasource.createViewForSongArtists();
+
         songArtists = datasource.querySongInfoView("She's On Fire");
         if(songArtists.isEmpty()) { // GOOD PRACTICE IS EMPTY INSTEAD OF NULL !!!
-            System.out.println("Couldn't find the artist for the song");
+            System.out.println("Nie ma takiej piosenki ");
             return;
         }
         for (SongArtist artist : songArtists) {
