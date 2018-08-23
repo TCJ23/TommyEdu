@@ -80,11 +80,19 @@ public class DataSource {
             COLUMN_SONG_ALBUM + ", " + COLUMN_SONG_TRACK + " FROM " + TABLE_ARTIST_SONG_VIEW +
             " WHERE " + COLUMN_SONG_TITLE + " = \"";
 
+    public static final String QUERY_VIEW_SONG_INFO_PREP = "SELECT " + COLUMN_ARTIST_NAME + ", " +
+            COLUMN_SONG_ALBUM + ", " + COLUMN_SONG_TRACK + " FROM " + TABLE_ARTIST_SONG_VIEW +
+            " WHERE " + COLUMN_SONG_TITLE + " = ?";
+
+    // SELECT name, album, track FROM artist_list WHERE title = ? ORDER BY ?, ?
     private Connection conn;
+
+    private PreparedStatement querySafe;
 
     public boolean open() {
         try {
             conn = DriverManager.getConnection(CONNECTION_STRING);
+            querySafe = conn.prepareStatement(QUERY_VIEW_SONG_INFO_PREP);
             return true;
         } catch (SQLException e) {
             System.out.println("No coś poszło nie tak " + e.getMessage());
@@ -95,6 +103,12 @@ public class DataSource {
 
     public void close() {
         try {
+
+            if (querySafe != null) {
+                querySafe.close();
+            }
+
+
             if (conn != null) {
                 conn.close();
             }
@@ -256,7 +270,7 @@ public class DataSource {
         }
     }
 
-    /* THIS SHOULD RETURN SAME INFO AS queryArtistsForSong */
+    //     THIS SHOULD RETURN SAME INFO AS queryArtistsForSong
     public List<SongArtist> querySongInfoView(String title) {
         StringBuilder sb = new StringBuilder(QUERY_VIEW_SONG_INFO);
         sb.append(title);
@@ -283,4 +297,28 @@ public class DataSource {
             return null;
         }
     }
+
+    public List<SongArtist> querySQLsafe(String title) {
+
+        try {
+            querySafe.setString(1, title);
+            ResultSet results = querySafe.executeQuery();
+
+            List<SongArtist> songArtists = new ArrayList<>();
+            while (results.next()) {
+                SongArtist songArtist = new SongArtist();
+                songArtist.setArtistName(results.getString(1));
+                songArtist.setAlbumName(results.getString(2));
+                songArtist.setTrack(results.getInt(3));
+                songArtists.add(songArtist);
+            }
+
+            return songArtists;
+
+        } catch (SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+            return null;
+        }
+    }
+
 }

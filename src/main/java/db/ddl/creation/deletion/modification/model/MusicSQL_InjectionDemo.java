@@ -11,28 +11,30 @@ public class MusicSQL_InjectionDemo {
             return;
         }
 
+        System.out.println("Liczba piosenek " + datasource.getCount(DataSource.TABLE_SONGS));
+
+        datasource.createViewForSongArtists();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a song title i.e: Go Your Own Way\nthis sing make query behave normal\n " +
-                            "use tis for SQL Injection:\nGo Your Own Way\" or 1=1 or \"");
+        System.out.println("Enter a song title: Go Your Own Way\nto invoke SQL Injection you should put\n" +
+                "Go Your Own Way\" or 1=1 or \"");
         String title = scanner.nextLine();
 
-        List<SongArtist> songArtists = datasource.querySongInfoView(title);
-        if (songArtists.isEmpty()) {
+        List<SongArtist> songArtists = datasource.querySQLsafe(title);
+//        List<SongArtist>songArtists = datasource.querySongInfoView(title); // SQL INJECTION NOT SAFE
+        if (songArtists.isEmpty()) { // GOOD PRACTICE IS EMPTY INSTEAD OF NULL !!!
             System.out.println("Nie ma takiej piosenki ");
             return;
         }
-
         for (SongArtist artist : songArtists) {
             System.out.println("WIDOK - Artist name = " + artist.getArtistName() +
                     " Album name = " + artist.getAlbumName() +
                     " Track number = " + artist.getTrack());
         }
-
         datasource.close();
-        /*           SQL INJECTION NIUANS!!!                            */
-        /* SELECT name, album, track FROM artist_list WHERE title = "Go Your Own Way" or 1=1 or ""
-
-         SELECT name, album, track FROM artist_list WHERE title = "Go Your Own Way or 1=1 or ""  */
     }
+    /* SQL INJECTION NIUANSE !!!!!!!!!!!*/
+    // SELECT name, album, track FROM artist_list WHERE title = "Go Your Own Way" or 1=1 or ""
+
+    // SELECT name, album, track FROM artist_list WHERE title = "Go Your Own Way or 1=1 or ""
 }
