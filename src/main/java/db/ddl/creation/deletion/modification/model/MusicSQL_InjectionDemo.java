@@ -37,4 +37,6 @@ public class MusicSQL_InjectionDemo {
     // SELECT name, album, track FROM artist_list WHERE title = "Go Your Own Way" or 1=1 or ""
 
     // SELECT name, album, track FROM artist_list WHERE title = "Go Your Own Way or 1=1 or ""
+
+    // SELECT name, album, track FROM artist_list WHERE title = ? OR artist = ?
 }
