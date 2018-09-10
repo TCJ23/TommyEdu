@@ -1,4 +1,4 @@
-package db.ddl.creation.deletion.modification.model;
+package db.issue28_34.model;
 
 import java.sql.*;
 import java.util.ArrayList;

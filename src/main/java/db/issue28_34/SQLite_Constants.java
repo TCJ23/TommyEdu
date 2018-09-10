@@ -1,4 +1,4 @@
-package db.ddl.creation.deletion.modification;
+package db.issue28_34;
 
 import java.sql.*;
 

@@ -1,8 +1,9 @@
-package db.ddl.creation.deletion.modification.model;
+package db.issue28_34.model;
+
 
 import java.util.List;
 
-public class MusicDBTransactions {
+public class MusicDB {
     public static void main(String[] args) {
         DataSource datasource = new DataSource();
         if (!datasource.open()) {
@@ -42,7 +43,7 @@ public class MusicDBTransactions {
         datasource.createViewForSongArtists();
 
         songArtists = datasource.querySongInfoView("She's On Fire");
-        if (songArtists.isEmpty()) { // GOOD PRACTICE IS EMPTY INSTEAD OF NULL !!!
+        if(songArtists.isEmpty()) { // GOOD PRACTICE IS EMPTY INSTEAD OF NULL !!!
             System.out.println("Nie ma takiej piosenki ");
             return;
         }
@@ -51,13 +52,6 @@ public class MusicDBTransactions {
                     " Album name = " + artist.getAlbumName() +
                     " Track number = " + artist.getTrack());
         }
-        datasource.insertSong("Bird Dog", "Everly Brothers", "All-Time Greatest Hits", 7);
         datasource.close();
     }
-    /* SQL INJECTION NIUANSE !!!!!!!!!!!*/
-    // SELECT name, album, track FROM artist_list WHERE title = "Go Your Own Way" or 1=1 or ""
-
-    // SELECT name, album, track FROM artist_list WHERE title = "Go Your Own Way or 1=1 or ""
-
-    // SELECT name, album, track FROM artist_list WHERE title = ? OR artist = ?
 }
