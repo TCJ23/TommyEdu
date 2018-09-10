@@ -1,4 +1,4 @@
-package advanced.java.design.patterns.issue27;
+package advanced.java.design.patterns.issue27.singleton;
 
 public class SingletonLazyLoaded {
     private static SingletonLazyLoaded instance = null;

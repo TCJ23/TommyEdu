@@ -1,4 +1,4 @@
-package advanced.java.design.patterns.issue27;
+package advanced.java.design.patterns.issue27.singleton;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

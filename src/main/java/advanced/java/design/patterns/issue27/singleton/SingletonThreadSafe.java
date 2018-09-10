@@ -1,4 +1,4 @@
-package advanced.java.design.patterns.issue27;
+package advanced.java.design.patterns.issue27.singleton;
 
 public class SingletonThreadSafe {
     private static volatile SingletonThreadSafe instance = null;
