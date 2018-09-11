@@ -38,11 +38,11 @@ public class SongsOfThe90s implements SongIterator{
     // This is replaced by the Iterator
     // Return a Hashtable full of SongInfo Objects
 
-    /*public Hashtable<Integer, SongInfo> getBestSongs(){
+    public Hashtable<Integer, SongInfo> getBestSongs(){
 
         return bestSongs;
 
-    }*/
+    }
 
     // NEW By adding this method I'll be able to treat all
     // collections the same

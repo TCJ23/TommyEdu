@@ -36,12 +36,11 @@ public class SongsOfThe80s implements SongIterator{
     }
 
     // This is replaced by the Iterator
-/*
     public SongInfo[] getBestSongs(){
 
         return bestSongs;
 
-    }*/
+    }
 
     // NEW By adding this method I'll be able to treat all
     // collections the same

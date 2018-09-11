@@ -32,12 +32,11 @@ public class SongsOfThe70s implements SongIterator{
     // Get rid of this
     // Return the ArrayList filled with SongInfo Objects
 
-    /*public ArrayList<SongInfo> getBestSongs(){
+    public ArrayList<SongInfo> getBestSongs(){
 
         return bestSongs;
 
     }
-*/
     // NEW By adding this method I'll be able to treat all
     // collections the same
 
