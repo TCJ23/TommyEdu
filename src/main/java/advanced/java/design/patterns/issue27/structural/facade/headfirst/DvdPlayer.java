@@ -1,4 +1,4 @@
-package advanced.java.design.patterns.issue27.structural.headfirst;
+package advanced.java.design.patterns.issue27.structural.facade.headfirst;
 
 public class DvdPlayer {
 	String description;

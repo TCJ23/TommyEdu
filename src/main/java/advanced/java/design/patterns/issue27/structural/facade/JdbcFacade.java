@@ -1,4 +1,4 @@
-package advanced.java.design.patterns.issue27.structural;
+package advanced.java.design.patterns.issue27.structural.facade;
 
 import advanced.java.design.patterns.issue27.creational.singleton.DbSingleton;
 import lombok.Data;
@@ -14,6 +14,7 @@ import java.util.List;
 public class JdbcFacade {
 
     DbSingleton instance = DbSingleton.getInstance();
+//    DbSingleton instance = null;
 
     public int createTable() {
         int count = 0;
@@ -22,7 +23,7 @@ public class JdbcFacade {
             Statement statement = connection.createStatement();
             count = statement.executeUpdate("CREATE TABLE Address(ID INTEGER, StreetName VARCHAR(20), City VARCHAR(20))");
             statement.close();
-            connection.close();
+//            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,7 +37,7 @@ public class JdbcFacade {
             Statement statement = connection.createStatement();
             count = statement.executeUpdate("INSERT INTO Address(ID , StreetName, City) values(1,'Sterlinga', 'Lodz')");
             statement.close();
-            connection.close();
+//            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,6 +59,8 @@ public class JdbcFacade {
                 address.setCity(resultSet.getString(3));
                 addresses.add(address);
             }
+            /*??????????????*/
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

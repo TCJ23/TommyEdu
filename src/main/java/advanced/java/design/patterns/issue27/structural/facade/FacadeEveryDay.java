@@ -1,4 +1,4 @@
-package advanced.java.design.patterns.issue27.structural;
+package advanced.java.design.patterns.issue27.structural.facade;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
